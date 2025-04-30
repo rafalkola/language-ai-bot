@@ -170,3 +170,10 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 secrets.toml
+
+# User data
+user_profiles/
+.env
+
+# Local secrets
+.streamlit/secrets.toml

@@ -2,7 +2,7 @@
 # Import the necessary libraries
 ########################################################
 import streamlit as st
-from agent import agent
+from agent_logic import agent
 from prompts import (
     get_system_prompt, 
     get_conversation_mode_prompt,

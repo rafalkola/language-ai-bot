@@ -1,12 +1,9 @@
 import json
-import os
-from dotenv import load_dotenv
+import streamlit as st
 from openai import OpenAI
 from tools import save_memory, TOOLS
 
-# Load environment variables
-load_dotenv()
-
+# Initialize the OpenAI client with API key from Streamlit secrets
 def agent(messages, user_id="1234"):
     """
     Process messages through the OpenAI model and handle tool calls.
@@ -19,7 +16,7 @@ def agent(messages, user_id="1234"):
         str: The assistant's response or result of a tool call
     """
     # Initialize the OpenAI client
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
     
     # Extract the last user message for context
     last_user_message = ""

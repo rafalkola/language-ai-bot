@@ -2,7 +2,7 @@ import os
 import uuid
 import json
 import logging
-from dotenv import load_dotenv
+import streamlit as st
 from pinecone import Pinecone
 from openai import OpenAI
 from datetime import datetime, timezone
@@ -19,15 +19,12 @@ USER_PROFILES_DIR = "user_profiles"
 if not os.path.exists(USER_PROFILES_DIR):
     os.makedirs(USER_PROFILES_DIR)
 
-# Load environment variables
-load_dotenv()
-
 try:
     # Initialize Pinecone for vector database
-    pc = Pinecone(api_key=os.getenv("PINECONE_API_KEY"))
+    pc = Pinecone(api_key=st.secrets["PINECONE_API_KEY"])
     # Initialize the vector database index
-    index = pc.Index(os.getenv("PINECONE_INDEX_NAME"))
-    logger.info(f"Successfully connected to Pinecone index {os.getenv('PINECONE_INDEX_NAME')}")
+    index = pc.Index(st.secrets["PINECONE_INDEX_NAME"])
+    logger.info(f"Successfully connected to Pinecone index {st.secrets['PINECONE_INDEX_NAME']}")
 except Exception as e:
     logger.error(f"Error connecting to Pinecone: {str(e)}")
     # Create a fallback for development/testing
@@ -54,7 +51,7 @@ except Exception as e:
     logger.warning("Using dummy in-memory index as fallback")
 
 # Initialize OpenAI for embeddings 
-client = OpenAI()
+client = OpenAI(api_key=st.secrets["OPENAI_API_KEY"])
 
 # Define the tools
 TOOLS = [
@@ -195,7 +192,7 @@ def save_memory(memory, user_id="1234"):
         # Step 3: Store the vector document in the vector database
         result = index.upsert(
             vectors=documents,
-            namespace=os.getenv("PINECONE_NAMESPACE", "default")
+            namespace=st.secrets.get("PINECONE_NAMESPACE", "default")
         )
         
         logger.info(f"Memory saved successfully: {result}")
@@ -229,7 +226,7 @@ def load_memories(prompt, user_id="1234"):
             "type": {"$eq": "recall"},
         }
         
-        namespace = os.getenv("PINECONE_NAMESPACE", "default")
+        namespace = st.secrets.get("PINECONE_NAMESPACE", "default")
         logger.info(f"Querying namespace: {namespace} with filter: {filter_dict}")
         
         response = index.query(
