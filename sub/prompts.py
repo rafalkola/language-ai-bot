@@ -1,4 +1,4 @@
-from tools import load_memories
+from sub.tools import load_memories
 import logging
 
 logger = logging.getLogger("language_app")

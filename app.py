@@ -2,8 +2,8 @@
 # Import the necessary libraries
 ########################################################
 import streamlit as st
-from agent_logic import agent
-from prompts import (
+from sub.agent_logic import agent
+from sub.prompts import (
     get_system_prompt, 
     get_conversation_mode_prompt,
     get_grammar_mode_prompt, 
@@ -16,7 +16,7 @@ from prompts import (
 import uuid
 import os
 from datetime import datetime
-from tools import (
+from sub.tools import (
     load_memories, 
     save_memory,
     get_user_profile_path,
