@@ -71,12 +71,9 @@ Remember: Learning a language is a journey, and this app is here to make it enjo
 The Language Learning Assistant consists of these core components:
 
 - **app.py**: Main application entry point that initializes the Streamlit interface and manages the app workflow
+- **agent_logic.py**: Core intelligence of the application that handles the language learning strategies and tutoring logic
 - **tools.py**: Utility functions for API interactions, data processing, and helper methods
 - **prompts.py**: Contains template prompts used for AI interactions with carefully crafted system messages
 - **user_profiles/**: Directory storing user data and learning history in JSON format
-- **config.py**: Configuration settings for the application including default parameters
-- **components/**: Custom UI components for a better user experience
-- **memory.py**: Handles contextual memory using Pinecone vector database for persistent learning
-- **language_utils.py**: Language-specific utilities for grammar checking and vocabulary management
 
 Each component plays a specific role in delivering a seamless language learning experience. The modular design allows for easy updates and feature additions. 

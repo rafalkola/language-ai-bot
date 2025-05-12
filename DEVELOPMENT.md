@@ -42,24 +42,39 @@ The Language Learning Assistant is built on a modular architecture that separate
 - Coordinates between different application components
 
 #### Business Logic
+- **agent_logic.py**: Core intelligence that handles language learning strategies and tutoring logic
 - **tools.py**: Core utility functions for processing inputs and outputs
 - **prompts.py**: Template management for AI interactions
-- **language_utils.py**: Language-specific processing and analysis
 
 #### External Services Integration
-- **memory.py**: Handles Pinecone integration for contextual memory
 - OpenAI API integration for language model interactions
+- Pinecone vector database for contextual memory
 
 #### Data Persistence
 - User profile management in the `user_profiles/` directory
 - Session state management
+
+## Project Structure
+
+```
+language-ai-bot/
+├── app.py              # Main application file
+├── sub/                # Core modules directory
+│   ├── agent_logic.py  # Core language learning intelligence
+│   ├── tools.py        # Utility functions
+│   └── prompts.py      # AI interaction templates
+├── requirements.txt    # Project dependencies
+├── .streamlit/         # Streamlit configuration
+│   └── secrets.toml    # API keys and secrets
+└── user_profiles/      # User data storage
+```
 
 ## Key Flows
 
 ### Conversation Flow
 1. User inputs text in the target language
 2. Input is processed through `tools.py` functions
-3. Context is retrieved from Pinecone via `memory.py`
+3. Context is retrieved from Pinecone 
 4. A prompt is assembled using templates from `prompts.py`
 5. The prompt is sent to OpenAI API
 6. Response is processed and displayed to the user
@@ -67,7 +82,7 @@ The Language Learning Assistant is built on a modular architecture that separate
 
 ### Learning Progress Flow
 1. User interactions are analyzed for language patterns
-2. Progress metrics are calculated in `language_utils.py`
+2. Progress metrics are calculated based on these interactions
 3. User profile is updated with new metrics
 4. Dashboard displays updated progress
 
@@ -169,6 +184,7 @@ Areas for future expansion include:
 - Enhanced analytics and learning metrics
 - Spaced repetition system for vocabulary
 - Community features for language exchange
+- Custom UI components for a better user experience
 
 ## API Documentation
 
@@ -181,7 +197,7 @@ Areas for future expansion include:
 
 #### Memory API
 - `store_interaction(user_id, conversation)`: Stores conversation in vector database
-- `retrieve_context(user_id, query)`: Retrieves relevant conversation history
+- `retrieve_context(user_id, query)`: Retrieves relevant conversation history using Pinecone
 
 ### External APIs
 
