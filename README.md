@@ -76,4 +76,5 @@ The Language Learning Assistant consists of these core components:
 - **prompts.py**: Contains template prompts used for AI interactions with carefully crafted system messages
 - **user_profiles/**: Directory storing user data and learning history in JSON format
 
-Each component plays a specific role in delivering a seamless language learning experience. The modular design allows for easy updates and feature additions. 
+How it works:
+The user chats with an AI tutor via a Streamlit web app. Each message is enriched with past interactions retrieved from a Pinecone vector database and sent to OpenAI for a personalized response. Meaningful messages are stored back in Pinecone for future context. User profiles and preferences are saved locally in JSON files.
