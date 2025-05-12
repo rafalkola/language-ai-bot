@@ -2,6 +2,8 @@
 
 Your personal AI language tutor that helps you learn and practice languages through natural conversations and interactive exercises. Whether you're a beginner or advanced learner, this assistant adapts to your level and helps you improve your language skills in a fun and engaging way.
 
+## Link to the [App](https://language-ai-bot.streamlit.app/)
+
 ## What You Can Do
 
 ### Practice Conversations
